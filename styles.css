@@ -1,9 +1,3 @@
-/* FishStop – styles.css
-   Breakpoints follow the Figma frames:
-   mobile  (iPhone 16/17 Pro, 402px)  -> default
-   tablet  (iPad mini, 744px)         -> min-width: 700px
-   desktop (MacBook Pro 14", 1512px)  -> min-width: 1100px */
-
 :root {
   --orange: #ff6200;
   --grey: #d9d9d9;
@@ -55,13 +49,27 @@ a { color: inherit; }
 }
 .banner .logo img { width: 100%; height: 100%; object-fit: contain; }
 
-/* Page title bar (mobile inner pages only) */
-.page-title {
-  margin: 0;
-  background: var(--grey);
+/* Page title bar (mobile inner pages only): grey band with the title overlapping the banner */
+.page-title-wrap {
+  position: relative;
+  height: 77px;
+  margin: -14px 0 14px;
+}
+.page-title-wrap::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 14px;
   height: 50px;
+  background: var(--grey);
+}
+.page-title {
+  position: relative;
+  margin: 0;
+  height: 77px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
   justify-content: center;
   font-family: var(--font-title);
   font-weight: 600;
@@ -69,13 +77,7 @@ a { color: inherit; }
   line-height: 1;
   text-align: center;
   white-space: nowrap;
-  overflow: visible;
-  margin-top: 0;
-  position: relative;
 }
-.page-title span { position: relative; top: 14px; }
-.page-title-wrap { padding-bottom: 36px; background: var(--white); }
-.page-title-wrap .page-title { margin-top: -14px; }
 
 /* ---------- Navigation ---------- */
 .nav {
@@ -321,37 +323,39 @@ a { color: inherit; }
   .site-foot .foot-copy { padding-top: 0; font-size: 14px; line-height: 19px; margin-top: 3px; }
 }
 
-/* ================= Desktop ================= */
-@media (min-width: 1100px) {
-  .banner { height: 279px; }
-  .banner .logo { top: 8px; left: 17px; width: 333px; height: 261px; }
+/* ================= Desktop =================
+   Fluid from 1024px up to the 1512px Figma frame (.page is capped at 1512px). */
+@media (min-width: 1024px) {
+  .banner { height: clamp(200px, 18.45vw, 279px); }
+  .banner .logo { top: 8px; left: 17px; width: clamp(240px, 22vw, 333px); height: auto; aspect-ratio: 333 / 261; }
 
   .nav {
     position: absolute;
-    left: 304px;
-    right: 0;
-    top: 188px;
+    left: 20%;
+    right: 20px;
+    top: auto;
+    bottom: 8px;
     margin: 0;
     gap: 22px;
     width: auto;
   }
-  .nav li { flex: 0 0 266px; }
-  .nav a { height: 82px; font-size: 48px; line-height: 1.1; }
-  .nav li:last-child a { font-size: 32px; }
+  .nav li { flex: 1 1 0; min-width: 0; }
+  .nav a { height: clamp(56px, 5.4vw, 82px); font-size: clamp(26px, 3.2vw, 48px); line-height: 1.1; }
+  .nav li:last-child a { font-size: clamp(18px, 2.1vw, 32px); }
 
-  .tagline { height: 56px; font-size: 40px; margin: -9px 0 37px; }
+  .tagline { height: 56px; font-size: clamp(28px, 2.65vw, 40px); margin: 0 0 37px; }
 
   .cards {
-    grid-template-columns: repeat(2, 709px);
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 55px 36px;
-    padding: 0;
+    padding: 0 38px;
     margin-bottom: 70px;
   }
-  .card { height: 351px; }
-  .card--fish span { font-size: 96px; }
-  .card span { font-size: 48px; }
-  .card--scape span { font-size: 64px; }
-  .card--needs span { font-size: 32px; }
+  .card { height: clamp(240px, 23.2vw, 351px); }
+  .card--fish span { font-size: clamp(64px, 6.35vw, 96px); }
+  .card span { font-size: clamp(32px, 3.2vw, 48px); }
+  .card--scape span { font-size: clamp(40px, 4.2vw, 64px); }
+  .card--needs span { font-size: clamp(22px, 2.1vw, 32px); }
 
   .sections {
     display: grid;
@@ -366,32 +370,32 @@ a { color: inherit; }
   .gallery--plants,
   .gallery--plants.is-high,
   .gallery--mech,
-  .gallery--duo { height: 476px; }
+  .gallery--duo { height: clamp(320px, 31.5vw, 476px); }
   .copy {
     width: 572px;
     max-width: 100%;
-    margin-top: 69px;
-    font-size: 32px;
+    margin-top: clamp(40px, 4.5vw, 69px);
+    font-size: clamp(20px, 2.1vw, 32px);
     line-height: 1.25;
   }
 
   .site-foot {
     display: block;
     position: relative;
-    height: 406px;
+    height: clamp(300px, 26.85vw, 406px);
     margin-top: 40px;
     padding: 0;
   }
   .site-foot > * { position: absolute; }
-  .site-foot .foot-logo { left: 101px; top: 72px; width: 236px; height: 201px; }
-  .site-foot .foot-tagline { left: 202px; top: 20px; margin: 0; font-size: 24px; }
-  .site-foot .foot-contacts { left: 444px; top: 72px; padding: 0; }
-  .site-foot .foot-address { left: 881px; top: 72px; padding: 0; }
-  .site-foot h2 { font-size: 32px; margin-bottom: 8px; }
+  .site-foot .foot-logo { left: 6.7%; top: 17.7%; width: 15.6%; height: auto; aspect-ratio: 236 / 201; }
+  .site-foot .foot-tagline { left: 13.4%; top: 5%; margin: 0; font-size: clamp(16px, 1.6vw, 24px); }
+  .site-foot .foot-contacts { left: 29.4%; top: 17.7%; padding: 0; }
+  .site-foot .foot-address { left: 58.3%; top: 17.7%; padding: 0; }
+  .site-foot h2 { font-size: clamp(22px, 2.1vw, 32px); margin-bottom: 8px; }
   .site-foot ul { padding: 0 0 0 0; }
   .site-foot li { margin-bottom: 14px; }
-  .site-foot a { font-size: 24px; }
-  .site-foot address a { font-size: 16px; max-width: 199px; line-height: 1.6; }
-  .site-foot .foot-rule { left: 0; right: 0; top: 312px; margin: 0; height: 2px; }
-  .site-foot .foot-copy { left: 687px; top: 330px; padding: 0; font-size: 16px; }
+  .site-foot a { font-size: clamp(16px, 1.6vw, 24px); }
+  .site-foot address a { font-size: clamp(13px, 1.06vw, 16px); max-width: 199px; line-height: 1.6; }
+  .site-foot .foot-rule { left: 0; right: 0; bottom: 70px; top: auto; margin: 0; height: 2px; }
+  .site-foot .foot-copy { left: 0; right: 0; bottom: 30px; text-align: center; padding: 0; font-size: 16px; }
 }
