@@ -323,25 +323,30 @@ a { color: inherit; }
   .site-foot .foot-copy { padding-top: 0; font-size: 14px; line-height: 19px; margin-top: 3px; }
 }
 
-/* ================= Desktop =================
-   Fluid from 1024px up to the 1512px Figma frame (.page is capped at 1512px). */
+/* ================= Desktop ================= */
 @media (min-width: 1024px) {
   .banner { height: clamp(200px, 18.45vw, 279px); }
   .banner .logo { top: 8px; left: 17px; width: clamp(240px, 22vw, 333px); height: auto; aspect-ratio: 333 / 261; }
 
   .nav {
-    position: absolute;
-    left: 20%;
-    right: 20px;
-    top: auto;
-    bottom: 8px;
-    margin: 0;
-    gap: 22px;
-    width: auto;
-  }
-  .nav li { flex: 1 1 0; min-width: 0; }
-  .nav a { height: clamp(56px, 5.4vw, 82px); font-size: clamp(26px, 3.2vw, 48px); line-height: 1.1; }
-  .nav li:last-child a { font-size: clamp(18px, 2.1vw, 32px); }
+  --nav-left: 20%;                          
+  --nav-gap: 22px;                          
+  --nav-btn-height: clamp(56px, 5.4vw, 82px);
+  --nav-font: clamp(26px, 3.2vw, 48px);     
+  --nav-font-long: clamp(18px, 2.1vw, 32px);
+
+  position: absolute;
+  left: var(--nav-left);
+  right: 20px;
+  top: auto;
+  bottom: 8px;
+  margin: 0;
+  gap: var(--nav-gap);
+  width: auto;
+}
+.nav li { flex: 1 1 0; min-width: 0; }
+.nav a { height: var(--nav-btn-height); font-size: var(--nav-font); line-height: 1.1; }
+.nav li:last-child a { font-size: var(--nav-font-long); }
 
   .tagline { height: 56px; font-size: clamp(28px, 2.65vw, 40px); margin: 0 0 37px; }
 
