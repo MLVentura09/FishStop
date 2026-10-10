@@ -19,7 +19,7 @@ html { -webkit-text-size-adjust: 100%; }
 
 body {
   margin: 0;
-  background: var(--white);
+   background: #9fd8e3 url("img/background.jpe") center / cover no-repeat fixed;
   color: #000;
   font-family: var(--font-title);
   font-weight: 600;
