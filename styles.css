@@ -36,7 +36,7 @@ a { color: inherit; }
 .banner {
   position: relative;
   height: 183px;
-  background: var(--orange) url("images/shop1.png") center / cover no-repeat;
+  background: #0b6f86 url("img/banner-waves.jpe") center / cover no-repeat;
   border: 1px solid var(--ink);
 }
 .banner .logo {
@@ -83,8 +83,8 @@ a { color: inherit; }
 .nav {
   display: flex;
   flex-direction: column;
-  gap: 22px;
-  width: 321px;
+  gap: 18px;
+  width: 292px;
   max-width: calc(100% - 40px);
   margin: 0 auto 21px;
   padding: 0;
@@ -99,15 +99,30 @@ a { color: inherit; }
   color: var(--white);
   font-family: var(--font-title);
   font-weight: 600;
-  font-size: 24px;
+  font-size: 21px;
   line-height: 1.2;
   text-align: center;
   text-decoration: none;
+  /* looks clickable: button shape, shadow, pointer, press effect */
+  cursor: pointer;
+  border-radius: 8px;
+  box-shadow: 0 3px 0 #a84000, 0 5px 8px rgba(0, 0, 0, 0.25);
+  transition: background-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
+  -webkit-tap-highlight-color: transparent;
 }
 .nav a:hover,
 .nav a:focus-visible,
 .nav a[aria-current="page"] { background: #d95300; }
-
+.nav a:hover,
+.nav a:focus-visible {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 0 #a84000, 0 8px 12px rgba(0, 0, 0, 0.3);
+}
+.nav a:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 0 #a84000, 0 2px 4px rgba(0, 0, 0, 0.25);
+}
+.nav a:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
 /* ---------- Home ---------- */
 .tagline {
   margin: 0 0 15px;
@@ -271,7 +286,7 @@ a { color: inherit; }
     max-width: none;
     margin: 14px 10px 21px;
   }
-  .nav li { flex: 1 1 0; }
+  .nav li { flex: 1 1 0;}
   .nav a { min-height: 33px; }
 
   .tagline {
@@ -329,24 +344,30 @@ a { color: inherit; }
   .banner .logo { top: 8px; left: 17px; width: clamp(240px, 22vw, 333px); height: auto; aspect-ratio: 333 / 261; }
 
   .nav {
-  --nav-left: 20%;                          
-  --nav-gap: 22px;                          
-  --nav-btn-height: clamp(56px, 5.4vw, 82px);
-  --nav-font: clamp(26px, 3.2vw, 48px);     
-  --nav-font-long: clamp(18px, 2.1vw, 32px);
+    --nav-left: 25%;
+    --nav-right: 3%;                     
+    --nav-gap: 18px;                  
+    --nav-btn-height: clamp(40px, 3.6vw, 55px);
+    --nav-font: clamp(18px, 2.1vw, 31px);     
+    --nav-font-long: clamp(13px, 1.4vw, 21px);
 
-  position: absolute;
-  left: var(--nav-left);
-  right: 20px;
-  top: auto;
-  bottom: 8px;
-  margin: 0;
-  gap: var(--nav-gap);
-  width: auto;
-}
-.nav li { flex: 1 1 0; min-width: 0; }
-.nav a { height: var(--nav-btn-height); font-size: var(--nav-font); line-height: 1.1; }
-.nav li:last-child a { font-size: var(--nav-font-long); }
+    position: absolute;
+    left: var(--nav-left);
+    right: var(--nav-right);
+    top: auto;
+    bottom: 8px;
+    margin: 0;
+    gap: var(--nav-gap);
+    width: auto;
+  }
+  .nav li { flex: 1 1 0; min-width: 0; }
+  .nav a { height: var(--nav-btn-height); 
+    font-size: var(--nav-font); line-height: 1.1; }
+  .nav li:last-child a { font-size: var(--nav-font-long); }
+  .nav a { transition: background-color 0.15s ease, transform 0.15s ease; }
+  .nav a:hover,
+  .nav a:focus-visible { transform: translateY(-3px); }
+  .nav a:focus-visible { outline: 3px solid var(--white); outline-offset: 2px; }
 
   .tagline { height: 56px; font-size: clamp(28px, 2.65vw, 40px); margin: 0 0 37px; }
 
@@ -384,23 +405,23 @@ a { color: inherit; }
     line-height: 1.25;
   }
 
-  .site-foot {
+   .site-foot {
     display: block;
     position: relative;
-    height: clamp(300px, 26.85vw, 406px);
+    height: clamp(220px, 19vw, 290px);   /* footer height: first = smallest, last = largest (Figma was 406px) */
     margin-top: 40px;
     padding: 0;
   }
   .site-foot > * { position: absolute; }
-  .site-foot .foot-logo { left: 6.7%; top: 17.7%; width: 15.6%; height: auto; aspect-ratio: 236 / 201; }
-  .site-foot .foot-tagline { left: 13.4%; top: 5%; margin: 0; font-size: clamp(16px, 1.6vw, 24px); }
-  .site-foot .foot-contacts { left: 29.4%; top: 17.7%; padding: 0; }
-  .site-foot .foot-address { left: 58.3%; top: 17.7%; padding: 0; }
+  .site-foot .foot-logo { left: 6.7%; top: 15%; width: 12.5%; height: auto; aspect-ratio: 236 / 201; }
+  .site-foot .foot-tagline { left: 13.4%; top: 3%; margin: 0; font-size: clamp(16px, 1.6vw, 24px); }
+  .site-foot .foot-contacts { left: 29.4%; top: 15%; padding: 0; }
+  .site-foot .foot-address { left: 58.3%; top: 15%; padding: 0; }
   .site-foot h2 { font-size: clamp(22px, 2.1vw, 32px); margin-bottom: 8px; }
   .site-foot ul { padding: 0 0 0 0; }
   .site-foot li { margin-bottom: 14px; }
   .site-foot a { font-size: clamp(16px, 1.6vw, 24px); }
   .site-foot address a { font-size: clamp(13px, 1.06vw, 16px); max-width: 199px; line-height: 1.6; }
-  .site-foot .foot-rule { left: 0; right: 0; bottom: 70px; top: auto; margin: 0; height: 2px; }
-  .site-foot .foot-copy { left: 0; right: 0; bottom: 30px; text-align: center; padding: 0; font-size: 16px; }
+  .site-foot .foot-rule { left: 0; right: 0; bottom: 60px; top: auto; margin: 0; height: 2px; }
+  .site-foot .foot-copy { left: 0; right: 0; bottom: 20px; text-align: center; padding: 0; font-size: 16px; }
 }
