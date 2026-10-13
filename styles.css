@@ -356,34 +356,36 @@ a { color: inherit; }
      Inner pages only - index has none. */
   .page-title-wrap {
     position: absolute;
-    left: var(--nav-left);
+    left: var(--nav-left);                     /* moved right, away from the logo */
     right: var(--nav-right);
     top: 0;
     height: calc(clamp(200px, 18.45vw, 279px) - var(--nav-btn-height) - 8px);  /* the space above the nav */
     margin: 0;
     display: flex;
     align-items: center;
-    justify-content: flex-end;               /* flex-start = left, center = middle */
+    justify-content: center;
   }
   .page-title-wrap::before { display: none; }
   .page-title {
     height: auto;
-    display: block;
-    padding: 0.3em 1.1em 0.35em;
-    background: #1e9fd8;                       /* ellipse colour */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    width: clamp(380px, 52vw, 780px);          /* same ellipse width for every label */
+    padding: 0.9em 1.4em 1em;
+    background: #1e9fd8;
     color: var(--white);
     border: 3px solid var(--ink);
     border-radius: 50%;
     font-family: var(--font-display);
-    font-size: clamp(24px, 2.8vw, 42px);
+    font-size: clamp(14px, 1.6vw, 24px);       /* same font size for every label */
     line-height: 1.1;
     text-align: center;
     text-transform: none;
     text-shadow: 0 2px 2px rgba(0, 0, 0, 0.45);
     white-space: nowrap;
   }
-  .page-title--plants { font-size: clamp(22px, 2.5vw, 38px); }
-  .page-title--mech { font-size: clamp(16px, 1.9vw, 28px); }
 
   .nav {
     --nav-left: 25%;
